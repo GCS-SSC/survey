@@ -1,5 +1,6 @@
 import { type PropType, type SlotsType } from 'vue';
 import { type SurveyDefinition, type SurveyAnswers, type SurveyError, type SurveyQuestion } from './index.js';
+import type { ResolvedPage } from './flow.js';
 export interface SurveyField {
     question: SurveyQuestion;
     id: string;
@@ -18,6 +19,15 @@ export interface SurveyField {
 export interface SurveySlot {
     fields: SurveyField[];
     title: string;
+    description: string;
+    page: ResolvedPage | undefined;
+    pageIndex: number;
+    canBack: boolean;
+    isLastPage: boolean;
+    complete: boolean;
+    next: () => boolean;
+    back: () => void;
+    errors: Record<string, SurveyError>;
     validate: () => Record<string, SurveyError>;
 }
 /** No elements or styles: the host provides every rendered control through the default slot. */

@@ -1,6 +1,6 @@
 {
   "name": "@gcs-ssc/survey",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "exports": {
     ".": {
@@ -22,7 +22,7 @@
   "peerDependencies": {
     "vue": "^3.5.0"
   },
-  "description": "Unstyled, headless survey model, Vue provider and designer primitives for GCS\u2013SSC applications",
+  "description": "Unstyled, headless survey model, Vue provider and designer primitives for GCS–SSC applications",
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.json",

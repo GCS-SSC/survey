@@ -1,8 +1,8 @@
-import type { SurveyDefinition, SurveyQuestion } from './index.js';
+import { type SurveyDefinition, type SurveyQuestion } from './index.js';
 /** Hosts own persistence, dialogs and styling; IDs remain stable across edits and reorder. */
 export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
     definition: import("vue").Ref<{
-        schemaVersion: 1;
+        schemaVersion: 2;
         title: {
             en: string;
             fr: string;
@@ -20,6 +20,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         } | {
             id: string;
             label: {
@@ -31,6 +42,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
             hint?: {
                 en: string;
                 fr: string;
+            } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
             } | undefined;
         } | {
             id: string;
@@ -44,6 +66,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         } | {
             id: string;
             label: {
@@ -55,6 +88,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
             hint?: {
                 en: string;
                 fr: string;
+            } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
             } | undefined;
         } | {
             id: string;
@@ -75,9 +119,107 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         })[];
+        pages: {
+            id: string;
+            title: {
+                en: string;
+                fr: string;
+            };
+            questionIds: string[];
+            sections: {
+                id: string;
+                title: {
+                    en: string;
+                    fr: string;
+                };
+                questionIds: string[];
+                subsections: {
+                    id: string;
+                    title: {
+                        en: string;
+                        fr: string;
+                    };
+                    questionIds: string[];
+                    description?: {
+                        en: string;
+                        fr: string;
+                    } | undefined;
+                    visibleWhen?: {
+                        match: "any" | "all";
+                        conditions: ({
+                            questionId: string;
+                            operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                            value: string;
+                        } | {
+                            questionId: string;
+                            operator: "answered" | "notAnswered";
+                        })[];
+                    } | undefined;
+                }[];
+                description?: {
+                    en: string;
+                    fr: string;
+                } | undefined;
+                visibleWhen?: {
+                    match: "any" | "all";
+                    conditions: ({
+                        questionId: string;
+                        operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                        value: string;
+                    } | {
+                        questionId: string;
+                        operator: "answered" | "notAnswered";
+                    })[];
+                } | undefined;
+            }[];
+            branches: {
+                when: {
+                    match: "any" | "all";
+                    conditions: ({
+                        questionId: string;
+                        operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                        value: string;
+                    } | {
+                        questionId: string;
+                        operator: "answered" | "notAnswered";
+                    })[];
+                };
+                destination: {
+                    kind: "page";
+                    pageId: string;
+                } | {
+                    kind: "end";
+                };
+            }[];
+            description?: {
+                en: string;
+                fr: string;
+            } | undefined;
+            next?: {
+                kind: "page";
+                pageId: string;
+            } | {
+                kind: "end";
+            } | undefined;
+        }[];
+        description?: {
+            en: string;
+            fr: string;
+        } | undefined;
     }, {
-        schemaVersion: 1;
+        schemaVersion: 2;
         title: {
             en: string;
             fr: string;
@@ -95,6 +237,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         } | {
             id: string;
             label: {
@@ -106,6 +259,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
             hint?: {
                 en: string;
                 fr: string;
+            } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
             } | undefined;
         } | {
             id: string;
@@ -119,6 +283,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         } | {
             id: string;
             label: {
@@ -130,6 +305,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
             hint?: {
                 en: string;
                 fr: string;
+            } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
             } | undefined;
         } | {
             id: string;
@@ -150,9 +336,107 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         })[];
+        pages: {
+            id: string;
+            title: {
+                en: string;
+                fr: string;
+            };
+            questionIds: string[];
+            sections: {
+                id: string;
+                title: {
+                    en: string;
+                    fr: string;
+                };
+                questionIds: string[];
+                subsections: {
+                    id: string;
+                    title: {
+                        en: string;
+                        fr: string;
+                    };
+                    questionIds: string[];
+                    description?: {
+                        en: string;
+                        fr: string;
+                    } | undefined;
+                    visibleWhen?: {
+                        match: "any" | "all";
+                        conditions: ({
+                            questionId: string;
+                            operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                            value: string;
+                        } | {
+                            questionId: string;
+                            operator: "answered" | "notAnswered";
+                        })[];
+                    } | undefined;
+                }[];
+                description?: {
+                    en: string;
+                    fr: string;
+                } | undefined;
+                visibleWhen?: {
+                    match: "any" | "all";
+                    conditions: ({
+                        questionId: string;
+                        operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                        value: string;
+                    } | {
+                        questionId: string;
+                        operator: "answered" | "notAnswered";
+                    })[];
+                } | undefined;
+            }[];
+            branches: {
+                when: {
+                    match: "any" | "all";
+                    conditions: ({
+                        questionId: string;
+                        operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                        value: string;
+                    } | {
+                        questionId: string;
+                        operator: "answered" | "notAnswered";
+                    })[];
+                };
+                destination: {
+                    kind: "page";
+                    pageId: string;
+                } | {
+                    kind: "end";
+                };
+            }[];
+            description?: {
+                en: string;
+                fr: string;
+            } | undefined;
+            next?: {
+                kind: "page";
+                pageId: string;
+            } | {
+                kind: "end";
+            } | undefined;
+        }[];
+        description?: {
+            en: string;
+            fr: string;
+        } | undefined;
     } | {
-        schemaVersion: 1;
+        schemaVersion: 2;
         title: {
             en: string;
             fr: string;
@@ -170,6 +454,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         } | {
             id: string;
             label: {
@@ -181,6 +476,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
             hint?: {
                 en: string;
                 fr: string;
+            } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
             } | undefined;
         } | {
             id: string;
@@ -194,6 +500,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         } | {
             id: string;
             label: {
@@ -205,6 +522,17 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
             hint?: {
                 en: string;
                 fr: string;
+            } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
             } | undefined;
         } | {
             id: string;
@@ -225,11 +553,111 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 en: string;
                 fr: string;
             } | undefined;
+            visibleWhen?: {
+                match: "any" | "all";
+                conditions: ({
+                    questionId: string;
+                    operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                    value: string;
+                } | {
+                    questionId: string;
+                    operator: "answered" | "notAnswered";
+                })[];
+            } | undefined;
         })[];
+        pages: {
+            id: string;
+            title: {
+                en: string;
+                fr: string;
+            };
+            questionIds: string[];
+            sections: {
+                id: string;
+                title: {
+                    en: string;
+                    fr: string;
+                };
+                questionIds: string[];
+                subsections: {
+                    id: string;
+                    title: {
+                        en: string;
+                        fr: string;
+                    };
+                    questionIds: string[];
+                    description?: {
+                        en: string;
+                        fr: string;
+                    } | undefined;
+                    visibleWhen?: {
+                        match: "any" | "all";
+                        conditions: ({
+                            questionId: string;
+                            operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                            value: string;
+                        } | {
+                            questionId: string;
+                            operator: "answered" | "notAnswered";
+                        })[];
+                    } | undefined;
+                }[];
+                description?: {
+                    en: string;
+                    fr: string;
+                } | undefined;
+                visibleWhen?: {
+                    match: "any" | "all";
+                    conditions: ({
+                        questionId: string;
+                        operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                        value: string;
+                    } | {
+                        questionId: string;
+                        operator: "answered" | "notAnswered";
+                    })[];
+                } | undefined;
+            }[];
+            branches: {
+                when: {
+                    match: "any" | "all";
+                    conditions: ({
+                        questionId: string;
+                        operator: "equals" | "notEquals" | "contains" | "greaterThan" | "lessThan";
+                        value: string;
+                    } | {
+                        questionId: string;
+                        operator: "answered" | "notAnswered";
+                    })[];
+                };
+                destination: {
+                    kind: "page";
+                    pageId: string;
+                } | {
+                    kind: "end";
+                };
+            }[];
+            description?: {
+                en: string;
+                fr: string;
+            } | undefined;
+            next?: {
+                kind: "page";
+                pageId: string;
+            } | {
+                kind: "end";
+            } | undefined;
+        }[];
+        description?: {
+            en: string;
+            fr: string;
+        } | undefined;
     }>;
     replace: (value: SurveyDefinition) => void;
     add: (question: SurveyQuestion) => boolean;
     update: (question: SurveyQuestion) => boolean;
-    remove: (id: string) => void;
+    remove: (id: string) => boolean;
     move: (id: string, direction: -1 | 1) => void;
+    place: (id: string, containerId: string) => boolean;
+    isReferenced: (id: string) => boolean;
 };

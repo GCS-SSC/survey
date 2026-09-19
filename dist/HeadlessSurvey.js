@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue';
-import { validateAnswers } from './index.js';
+import { useSurveyFlow } from './navigation.js';
 /** No elements or styles: the host provides every rendered control through the default slot. */
 export const HeadlessSurvey = defineComponent({
     name: 'HeadlessSurvey',
@@ -19,7 +19,14 @@ export const HeadlessSurvey = defineComponent({
     },
     slots: Object,
     setup(props, { emit, slots, expose }) {
-        const fields = computed(() => props.definition.questions.map((question) => ({
+        const flow = useSurveyFlow({
+            definition: () => props.definition,
+            answers: () => props.modelValue,
+            onChange: (value) => emit('update:modelValue', value)
+        });
+        const fields = computed(() => (flow.page.value?.activeQuestionIds ?? [])
+            .map((id) => props.definition.questions.find((question) => question.id === id))
+            .map((question) => ({
             question,
             id: question.id,
             label: question.label[props.locale],
@@ -27,7 +34,11 @@ export const HeadlessSurvey = defineComponent({
             required: question.required,
             disabled: props.disabled,
             value: Object.hasOwn(props.modelValue, question.id) ? props.modelValue[question.id] : '',
-            error: Object.hasOwn(props.errors, question.id) ? props.errors[question.id] : undefined,
+            error: Object.hasOwn(props.errors, question.id)
+                ? props.errors[question.id]
+                : Object.hasOwn(flow.errors.value, question.id)
+                    ? flow.errors.value[question.id]
+                    : undefined,
             options: question.type === 'select'
                 ? question.options.map((option) => ({
                     value: option.value,
@@ -36,18 +47,31 @@ export const HeadlessSurvey = defineComponent({
                 : [],
             setValue: (value) => {
                 if (!props.disabled)
-                    emit('update:modelValue', {
-                        ...props.modelValue,
-                        [question.id]: value
-                    });
+                    flow.setAnswer(question.id, value);
             }
         })));
-        const validate = () => validateAnswers(props.definition, props.modelValue);
-        expose({ validate });
+        const validate = flow.validate;
+        const next = () => !props.disabled && flow.next();
+        const back = () => {
+            if (!props.disabled)
+                flow.back();
+        };
+        expose({ validate, next, back });
         return () => slots.default?.({
             fields: fields.value,
             title: props.definition.title[props.locale],
-            validate
+            validate,
+            description: props.definition.schemaVersion === 2
+                ? (props.definition.description?.[props.locale] ?? '')
+                : '',
+            page: flow.page.value,
+            pageIndex: flow.pageIndex.value,
+            canBack: flow.canBack.value,
+            isLastPage: flow.isLastPage.value,
+            complete: flow.complete.value,
+            errors: flow.errors.value,
+            next,
+            back
         });
     }
 });
