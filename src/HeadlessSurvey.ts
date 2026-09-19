@@ -20,6 +20,7 @@ export interface SurveyField {
   setValue: (value: string) => void
 }
 export interface SurveySlot {
+  attachmentsAllowed: boolean
   fields: SurveyField[]
   title: string
   description: string
@@ -94,6 +95,7 @@ export const HeadlessSurvey = defineComponent({
     return () =>
       slots.default?.({
         fields: fields.value,
+        attachmentsAllowed: props.definition.attachments?.enabled === true,
         title: props.definition.title[props.locale],
         validate,
         description:

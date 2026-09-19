@@ -59,6 +59,7 @@ export const HeadlessSurvey = defineComponent({
         expose({ validate, next, back });
         return () => slots.default?.({
             fields: fields.value,
+            attachmentsAllowed: props.definition.attachments?.enabled === true,
             title: props.definition.title[props.locale],
             validate,
             description: props.definition.schemaVersion === 2

@@ -5,8 +5,15 @@ export declare const bilingualText: z.ZodObject<{
     en: z.ZodString;
     fr: z.ZodString;
 }, z.core.$strict>;
+export declare const attachmentPolicySchema: z.ZodObject<{
+    enabled: z.ZodBoolean;
+}, z.core.$strict>;
+export type AttachmentPolicy = z.infer<typeof attachmentPolicySchema>;
 export declare const legacySurveySchema: z.ZodObject<{
     schemaVersion: z.ZodLiteral<1>;
+    attachments: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodBoolean;
+    }, z.core.$strict>>;
     title: z.ZodObject<{
         en: z.ZodString;
         fr: z.ZodString;
@@ -526,6 +533,9 @@ export declare const pageSchema: z.ZodObject<{
 }, z.core.$strict>;
 declare const structuredSurveySchema: z.ZodObject<{
     schemaVersion: z.ZodLiteral<2>;
+    attachments: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodBoolean;
+    }, z.core.$strict>>;
     title: z.ZodObject<{
         en: z.ZodString;
         fr: z.ZodString;
@@ -917,6 +927,9 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<[z.ZodObject<{
 }, z.core.$strict>], "type">;
 export declare const surveyV1Schema: z.ZodObject<{
     schemaVersion: z.ZodLiteral<1>;
+    attachments: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodBoolean;
+    }, z.core.$strict>>;
     title: z.ZodObject<{
         en: z.ZodString;
         fr: z.ZodString;
@@ -993,6 +1006,9 @@ export declare const surveyV1Schema: z.ZodObject<{
 }, z.core.$strict>;
 export declare const surveyV2Schema: z.ZodObject<{
     schemaVersion: z.ZodLiteral<2>;
+    attachments: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodBoolean;
+    }, z.core.$strict>>;
     title: z.ZodObject<{
         en: z.ZodString;
         fr: z.ZodString;
@@ -1307,6 +1323,9 @@ export declare const surveyV2Schema: z.ZodObject<{
 }, z.core.$strict>;
 export declare const surveySchema: z.ZodUnion<readonly [z.ZodObject<{
     schemaVersion: z.ZodLiteral<1>;
+    attachments: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodBoolean;
+    }, z.core.$strict>>;
     title: z.ZodObject<{
         en: z.ZodString;
         fr: z.ZodString;
@@ -1382,6 +1401,9 @@ export declare const surveySchema: z.ZodUnion<readonly [z.ZodObject<{
     }, z.core.$strict>], "type">>;
 }, z.core.$strict>, z.ZodObject<{
     schemaVersion: z.ZodLiteral<2>;
+    attachments: z.ZodOptional<z.ZodObject<{
+        enabled: z.ZodBoolean;
+    }, z.core.$strict>>;
     title: z.ZodObject<{
         en: z.ZodString;
         fr: z.ZodString;

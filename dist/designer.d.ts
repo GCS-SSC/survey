@@ -214,6 +214,9 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 kind: "end";
             } | undefined;
         }[];
+        attachments?: {
+            enabled: boolean;
+        } | undefined;
         description?: {
             en: string;
             fr: string;
@@ -431,6 +434,9 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 kind: "end";
             } | undefined;
         }[];
+        attachments?: {
+            enabled: boolean;
+        } | undefined;
         description?: {
             en: string;
             fr: string;
@@ -648,6 +654,9 @@ export declare const useSurveyDesigner: (initial: SurveyDefinition) => {
                 kind: "end";
             } | undefined;
         }[];
+        attachments?: {
+            enabled: boolean;
+        } | undefined;
         description?: {
             en: string;
             fr: string;

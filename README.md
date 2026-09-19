@@ -9,7 +9,7 @@ There are no Nuxt imports, theme dependencies, CSS files, HTML strings, network 
 Install a pinned Git commit or release tag from `GCS-SSC/survey` using your package manager. For example:
 
 ```json
-{ "dependencies": { "@gcs-ssc/survey": "github:GCS-SSC/survey#v0.2.0" } }
+{ "dependencies": { "@gcs-ssc/survey": "github:GCS-SSC/survey#v0.3.0" } }
 ```
 
 The Git repository includes the compiled `dist/` entrypoints so installation needs no build scripts. Vue 3.5+ is a peer dependency for the Vue entrypoint. Core model/validation imports do not load Vue. Node 22.12+ is supported for tooling and server use. The package is distributed through GitHub; it is not published to npm.
@@ -145,3 +145,5 @@ bun run build
 ```
 
 Commit regenerated `dist/` with source releases because Git consumers use the compiled entrypoints. Tests exercise version compatibility, bilingual descriptions, structural references, route changes, stale-answer pruning, nested visibility, Back/Next, and the JSON contract, all initial control validators, two differently rendered host UIs, immutable/disabled updates, reactive designer operations and import transport. This package does not include a styled designer, a backend, response storage or a dependency on either application.
+
+Attachment policy is optional on both supported definition versions: `attachments: { enabled: true }`. Omission disables attachments. The headless slot exposes `attachmentsAllowed`; hosts own file controls, authenticated storage, limits and submission linkage. Files are separate from question answers. Upgrading a definition preserves this policy.

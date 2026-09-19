@@ -40,9 +40,12 @@ const legacyQuestionSchema = z.discriminatedUnion('type', [
       )
   })
 ])
+export const attachmentPolicySchema = z.object({ enabled: z.boolean() }).strict()
+export type AttachmentPolicy = z.infer<typeof attachmentPolicySchema>
 export const legacySurveySchema = z
   .object({
     schemaVersion: z.literal(1),
+    attachments: attachmentPolicySchema.optional(),
     title: bilingualText,
     questions: z.array(legacyQuestionSchema).min(1).max(50)
   })
@@ -136,6 +139,7 @@ export const pageSchema = z
 const structuredSurveySchema = z
   .object({
     schemaVersion: z.literal(2),
+    attachments: attachmentPolicySchema.optional(),
     title: bilingualText,
     description: bilingualDescription.optional(),
     questions: z.array(questionV2Schema).min(1).max(50),

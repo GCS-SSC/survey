@@ -90,6 +90,9 @@ export declare const pushSurvey: (options: {
                     fr: string;
                 } | undefined;
             })[];
+            attachments?: {
+                enabled: boolean;
+            } | undefined;
         } | {
             schemaVersion: 2;
             title: {
@@ -303,6 +306,9 @@ export declare const pushSurvey: (options: {
                     kind: "end";
                 } | undefined;
             }[];
+            attachments?: {
+                enabled: boolean;
+            } | undefined;
             description?: {
                 en: string;
                 fr: string;

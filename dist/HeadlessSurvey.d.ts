@@ -17,6 +17,7 @@ export interface SurveyField {
     setValue: (value: string) => void;
 }
 export interface SurveySlot {
+    attachmentsAllowed: boolean;
     fields: SurveyField[];
     title: string;
     description: string;
